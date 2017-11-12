@@ -6,8 +6,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/take';
 
-import { ColorType, Color } from '../rim/rim.model';
+import { ColorType, Color, createClamp } from '../rim/rim.model';
 import { ChangeFillColorAction, ChangeOutlineColorAction } from '../rim/rim.actions';
+
+const clampColor = createClamp(0, 255);
 
 @WithSubStore({
   basePathMethodName: 'getBasePath',
@@ -74,7 +76,7 @@ export class BaseSliderComponent implements OnInit {
     if (this.dragging) {
       this.changeColor((<Color>this[`${this.selectedAttribute}Color`]).setColor({
         local: this.parameter,
-        value: e.clientX - this.bar.nativeElement.getBoundingClientRect().left,
+        value: clampColor(e.clientX - this.bar.nativeElement.getBoundingClientRect().left),
       }));
     }
   }

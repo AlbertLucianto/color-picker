@@ -1,22 +1,22 @@
-const inColorRange = (value: number): boolean => {
+export const inColorRange = (value: number): boolean => {
   return (value >= 0 && value < 256);
 };
 
-const validateColorHex = (hex: string): boolean => {
+export const validateColorHex = (hex: string): boolean => {
   const re = /\^#(?:[0-9a-fA-F]{3}){1,2}$/;
   return re.test(hex);
 };
 
-const componentToHex = (c: number): string => {
+export const componentToHex = (c: number): string => {
   const hex = c.toString(16);
   return hex.length === 1 ? '0' + hex : hex;
 };
 
-const rgbToHex = (r: number, g: number, b: number): string => {
+export const rgbToHex = (r: number, g: number, b: number): string => {
   return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
 };
 
-const createClamp = (min: number, max: number): (value: number) => number => {
+export const createClamp = (min: number, max: number): (value: number) => number => {
   return num => Math.round(num <= min ? min : num >= max ? max : num);
 };
 
