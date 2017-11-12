@@ -42,7 +42,7 @@ export class BaseSliderComponent implements OnInit {
   get barColor$(): Observable<string> {
     return this.localValue$
               .map(val => {
-                console.log(val);
+                // console.log(val);
                 return (new Color({
                   ...{ r: 0, g: 0, b: 0 },
                   [this.parameter]: val,
